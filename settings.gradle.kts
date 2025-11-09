@@ -35,3 +35,15 @@ plugins {
 include(":composeApp")
 include(":coredatabase")
 include(":corenetwork")
+
+include(":search:data")
+include(":search:domain")
+include(":search:ui")
+
+include(":favorite:data")
+include(":favorite:domain")
+include(":favorite:ui")
+
+include(":game:data")
+include(":game:domain")
+include(":game:ui")
