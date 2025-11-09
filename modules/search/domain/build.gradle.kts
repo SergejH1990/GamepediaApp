@@ -52,7 +52,7 @@ kotlin {
 }
 
 android {
-    namespace = "com.sermut.favorite.ui"
+    namespace = "com.sermut.modules.search.domain"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
 
     defaultConfig {
@@ -83,7 +83,7 @@ compose.desktop {
 
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
-            packageName = "com.sermut.favorite.ui"
+            packageName = "com.sermut.modules.search.domain"
             packageVersion = "1.0.0"
         }
     }

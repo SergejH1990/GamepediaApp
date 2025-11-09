@@ -52,7 +52,7 @@ kotlin {
 }
 
 android {
-    namespace = "com.sermut.corenetwork"
+    namespace = "com.sermut.modules.game.ui"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
 
     defaultConfig {
@@ -83,7 +83,7 @@ compose.desktop {
 
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
-            packageName = "com.sermut.corenetwork"
+            packageName = "com.sermut.modules.game.ui"
             packageVersion = "1.0.0"
         }
     }

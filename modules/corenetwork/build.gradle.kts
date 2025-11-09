@@ -52,7 +52,7 @@ kotlin {
 }
 
 android {
-    namespace = "com.sermut.coredatabase"
+    namespace = "com.sermut.modules.corenetwork"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
 
     defaultConfig {
@@ -83,7 +83,7 @@ compose.desktop {
 
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
-            packageName = "com.sermut.coredatabase"
+            packageName = "com.sermut.modules.corenetwork"
             packageVersion = "1.0.0"
         }
     }

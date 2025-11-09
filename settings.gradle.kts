@@ -33,17 +33,17 @@ plugins {
 }
 
 include(":composeApp")
-include(":coredatabase")
-include(":corenetwork")
+include(":modules:coredatabase")
+include(":modules:corenetwork")
 
-include(":search:data")
-include(":search:domain")
-include(":search:ui")
+include(":modules:search:data")
+include(":modules:search:domain")
+include(":modules:search:ui")
 
-include(":favorite:data")
-include(":favorite:domain")
-include(":favorite:ui")
+include(":modules:favorite:data")
+include(":modules:favorite:domain")
+include(":modules:favorite:ui")
 
-include(":game:data")
-include(":game:domain")
-include(":game:ui")
+include(":modules:game:data")
+include(":modules:game:domain")
+include(":modules:game:ui")
