@@ -5,7 +5,4 @@ data class Result(
     val genres: List<Genre>,
     val id: Int,
     val name: String,
-    val rating: Double,
-    val rating_top: Int,
-    val ratings: List<Rating>,
 )
