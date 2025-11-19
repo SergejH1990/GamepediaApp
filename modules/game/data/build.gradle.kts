@@ -33,6 +33,7 @@ kotlin {
         }
         commonMain.dependencies {
             implementation(projects.modules.corenetwork)
+            implementation(projects.modules.game.domain)
             implementation(compose.runtime)
             implementation(compose.foundation)
             implementation(compose.material3)
