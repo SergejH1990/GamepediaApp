@@ -34,6 +34,17 @@ kotlin {
             implementation(libs.androidx.activity.compose)
         }
         commonMain.dependencies {
+          /*  implementation(projects.modules.coredatabase)
+            implementation(projects.modules.corenetwork)
+            implementation(projects.modules.game.data)
+            implementation(projects.modules.game.domain)
+            implementation(projects.modules.game.ui)
+            implementation(projects.modules.search.data)
+            implementation(projects.modules.search.domain)
+            implementation(projects.modules.search.ui)
+            implementation(projects.modules.favorite.data)
+            implementation(projects.modules.favorite.domain)
+            implementation(projects.modules.favorite.ui)*/
             implementation(compose.runtime)
             implementation(compose.foundation)
             implementation(compose.material3)
@@ -42,6 +53,7 @@ kotlin {
             implementation(compose.components.uiToolingPreview)
             implementation(libs.androidx.lifecycle.viewmodelCompose)
             implementation(libs.androidx.lifecycle.runtimeCompose)
+            implementation(libs.navigation.compose)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
