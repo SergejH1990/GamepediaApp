@@ -19,6 +19,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.rememberNavController
+import com.sermut.gamepediaapp.navigation.GameNavigationGraph
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
@@ -29,29 +32,14 @@ import gamepediaapp.composeapp.generated.resources.compose_multiplatform
 @Preview
 fun App() {
     MaterialTheme {
-        var showContent by remember { mutableStateOf(false) }
-        Column(
-            modifier = Modifier
-                .background(MaterialTheme.colorScheme.background)
-                .safeContentPadding()
-                .fillMaxSize(),
-            horizontalAlignment = Alignment.CenterHorizontally,
-        ) {
-            Button(onClick = { showContent = !showContent }) {
-                Text("Click me!")
-            }
-            AnimatedVisibility(showContent,
-                enter = fadeIn() + expandHorizontally(),
-                exit = fadeOut() + shrinkVertically()
-            ) {
-                val greeting = remember { Greeting().greet() }
-                Column(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                ) {
-                    Image(painterResource(Res.drawable.compose_multiplatform), null)
-                    Text("Compose: $greeting")
-                }
+        val navHostController = rememberNavController()
+        NavHost(navHostController, startDestination = GameNavigationGraph.Destination.Root.route){
+            listOf(GameNavigationGraph).forEach {
+                it.build(
+                    modifier = Modifier.fillMaxSize(),
+                    navHostController = navHostController,
+                    navGraphBuilder = this
+                )
             }
         }
     }
