@@ -34,7 +34,7 @@ kotlin {
             implementation(libs.androidx.activity.compose)
         }
         commonMain.dependencies {
-          /*  implementation(projects.modules.coredatabase)
+            implementation(projects.modules.coredatabase)
             implementation(projects.modules.corenetwork)
             implementation(projects.modules.game.data)
             implementation(projects.modules.game.domain)
@@ -44,7 +44,7 @@ kotlin {
             implementation(projects.modules.search.ui)
             implementation(projects.modules.favorite.data)
             implementation(projects.modules.favorite.domain)
-            implementation(projects.modules.favorite.ui)*/
+            implementation(projects.modules.favorite.ui)
             implementation(compose.runtime)
             implementation(compose.foundation)
             implementation(compose.material3)
