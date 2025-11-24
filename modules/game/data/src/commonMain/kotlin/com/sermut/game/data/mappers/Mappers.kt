@@ -8,6 +8,6 @@ fun List<Result>.toDomainListOfGames(): List<Game> = map {
         id = it.id,
         name = it.name,
         imageURL = it.background_image,
-        genres = it.genres
+        genreList = it.genres
     )
 }

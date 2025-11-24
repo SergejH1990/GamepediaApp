@@ -6,5 +6,5 @@ data class Game(
     val id: Int,
     val name: String,
     val imageURL: String,
-    val genres: List<Genre>,
+    val genreList: List<Genre>,
 )

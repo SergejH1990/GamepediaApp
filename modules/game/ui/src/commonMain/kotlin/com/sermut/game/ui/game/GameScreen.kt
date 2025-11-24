@@ -2,11 +2,13 @@ package com.sermut.game.ui.game
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -76,30 +78,69 @@ fun GameScreenContent(
         }
 
         uiState.data?.let { data ->
-            LazyColumn(modifier = Modifier.fillMaxSize()){
+            val kTopAppBarPadding = 100.dp
+            val kBottomBarPadding = 50.dp
+            LazyColumn(modifier = Modifier.fillMaxSize().padding(top = kTopAppBarPadding, bottom = kBottomBarPadding)){
                 items(data) {
-                    Card(modifier = Modifier.padding(8.dp),
-                        shape = RoundedCornerShape(12.dp)
+                    val kCardPadding = 8.dp
+                    val kCardCornerRadius = 12.dp
+                    val kTextHorizontalPadding = 8.dp
+                    val kTextVerticalPadding = 4.dp
+                    Card(modifier = Modifier.padding(kCardPadding),
+                        shape = RoundedCornerShape(kCardCornerRadius)
                     ){
-                        Box(modifier.fillMaxSize()){
+                        val kCardContentPadding = 20.dp
+                        Box(modifier.fillMaxSize().padding(all = kCardContentPadding)){
+                            val kImageHeight = 350.dp
                             AsyncImage(
                                 model = it.imageURL,
                                 contentDescription = null,
-                                modifier = Modifier.fillMaxWidth().height(350.dp)
+                                modifier = Modifier.fillMaxWidth().height(kImageHeight)
                             )
 
                             Box(
-                                modifier = Modifier
-                                    .padding(horizontal = 12.dp)
-                                    .background(Color.White, shape = RoundedCornerShape(12.dp))
+                                modifier = Modifier.background(Color.White, shape = RoundedCornerShape(kCardCornerRadius))
                             ){
                                 Text(
                                     text = it.name,
                                     style = MaterialTheme.typography.bodyMedium,
-                                    modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp),
+                                    modifier = Modifier.padding(horizontal = kTextHorizontalPadding, vertical = kTextVerticalPadding),
                                     maxLines = 1,
                                     overflow = TextOverflow.Ellipsis
                                 )
+                            }
+                        }
+
+                        Row(modifier = Modifier.padding(start = kCardContentPadding)){
+                            val kGenreBoxPadding = 4.dp
+                            Box(
+                                modifier = Modifier
+                                    .padding(vertical = kGenreBoxPadding, )
+                            ) {
+                                Text(
+                                    text = "Genre:",
+                                    modifier = Modifier.padding(
+                                        horizontal = kTextHorizontalPadding,
+                                        vertical = kTextVerticalPadding
+                                    )
+                                )
+                            }
+                            LazyRow(modifier = Modifier.fillMaxSize()){
+                                items(items = it.genreList){
+                                    Box(
+                                        modifier = Modifier
+                                            .padding(kGenreBoxPadding)
+                                            .background(Color.White, shape = RoundedCornerShape(kCardCornerRadius))
+                                    ) {
+                                        Text(
+                                            text = it.name,
+                                            modifier = Modifier.padding(
+                                                horizontal = kTextHorizontalPadding,
+                                                vertical = kTextVerticalPadding
+                                            )
+                                        )
+                                    }
+                                }
                             }
                         }
                     }
