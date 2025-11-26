@@ -52,7 +52,10 @@ fun GameScreen(
 }
 
 @Composable
-fun GameScreenGenreRow(modifier: Modifier, genreList: List<Genre>){
+fun GameScreenGenreRow(
+    modifier: Modifier = Modifier,
+    genreList: List<Genre>
+){
     val kTextHorizontalPadding = 8.dp
     val kTextVerticalPadding = 4.dp
     val kCardContentPadding = 20.dp
