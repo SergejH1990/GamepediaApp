@@ -20,9 +20,15 @@ object GameNavigationGraph : BaseNavigationGraph {
     ) {
         navGraphBuilder.navigation(route = Destination.Root.route, startDestination = Destination.Game.route) {
             composable(route = Destination.Game.route){
-                GameScreen(modifier = modifier.fillMaxSize(), onFavoriteClick = {
+                GameScreen(
+                    modifier = modifier.fillMaxSize(),
+                    onFavoriteClick = {
 
-                })
+                    },
+                    onSearchClick =  {
+
+                    }
+                )
             }
         }
     }
