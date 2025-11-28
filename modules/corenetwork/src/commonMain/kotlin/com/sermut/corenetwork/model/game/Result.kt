@@ -1,5 +1,6 @@
 package com.sermut.corenetwork.model.game
 
+import com.sermut.common.domain.model.Genre
 import kotlinx.serialization.Serializable
 
 @Serializable

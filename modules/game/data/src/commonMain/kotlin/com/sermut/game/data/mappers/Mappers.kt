@@ -1,7 +1,7 @@
 package com.sermut.game.data.mappers
 
+import com.sermut.common.domain.model.Game
 import com.sermut.corenetwork.model.game.Result
-import com.sermut.game.domain.model.Game
 
 fun List<Result>.toDomainListOfGames(): List<Game> = map {
     Game(

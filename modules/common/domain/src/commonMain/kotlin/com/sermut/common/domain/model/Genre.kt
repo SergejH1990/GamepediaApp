@@ -1,4 +1,4 @@
-package com.sermut.corenetwork.model.game
+package com.sermut.common.domain.model
 
 import kotlinx.serialization.Serializable
 

@@ -1,6 +1,6 @@
 package com.sermut.game.domain.usecases
 
-import com.sermut.game.domain.model.Game
+import com.sermut.common.domain.model.Game
 import com.sermut.game.domain.repository.GameRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO

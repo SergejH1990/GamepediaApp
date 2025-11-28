@@ -1,6 +1,4 @@
-package com.sermut.game.domain.model
-
-import com.sermut.corenetwork.model.game.Genre
+package com.sermut.common.domain.model
 
 data class Game(
     val id: Int,

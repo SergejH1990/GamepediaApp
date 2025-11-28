@@ -36,6 +36,10 @@ include(":composeApp")
 include(":modules:coredatabase")
 include(":modules:corenetwork")
 
+include(":modules:common:data")
+include(":modules:common:domain")
+include(":modules:common:ui")
+
 include(":modules:search:data")
 include(":modules:search:domain")
 include(":modules:search:ui")

@@ -37,7 +37,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil3.compose.AsyncImage
-import com.sermut.corenetwork.model.game.Genre
+import com.sermut.common.domain.model.Genre
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable

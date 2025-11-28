@@ -2,7 +2,7 @@ package com.sermut.game.ui.game
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.sermut.game.domain.model.Game
+import com.sermut.common.domain.model.Game
 import com.sermut.game.domain.usecases.GetGamesUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
