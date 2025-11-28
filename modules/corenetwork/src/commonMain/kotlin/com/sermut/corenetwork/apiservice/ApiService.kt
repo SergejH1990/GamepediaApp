@@ -22,4 +22,19 @@ class ApiService (
             Result.failure(e)
         }
     }
+
+    suspend fun Search(searchQuery : String) : Result<GameResponse> {
+        return try {
+            val response = httpClient.get("api/games") {
+                url{
+                    parameter("key", "0c56c669b4194526ba356a980fa914b4")
+                    parameter("search", searchQuery)
+                }
+            }.body<GameResponse>()
+            Result.success(response)
+        }
+        catch (e : Exception){
+            Result.failure(e)
+        }
+    }
 }

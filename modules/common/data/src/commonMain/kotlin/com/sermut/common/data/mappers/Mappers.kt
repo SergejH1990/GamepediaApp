@@ -1,4 +1,4 @@
-package com.sermut.game.data.mappers
+package com.sermut.common.data.mappers
 
 import com.sermut.common.domain.model.Game
 import com.sermut.corenetwork.model.game.Result

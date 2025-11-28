@@ -32,6 +32,7 @@ kotlin {
             implementation(libs.androidx.activity.compose)
         }
         commonMain.dependencies {
+            implementation(projects.modules.common.data)
             implementation(projects.modules.common.domain)
             implementation(projects.modules.corenetwork)
             implementation(projects.modules.game.domain)
