@@ -60,7 +60,8 @@ fun GameScreenGenreRow(
     val kTextVerticalPadding = 4.dp
     val kCardContentPadding = 20.dp
     val kCardCornerRadius = 12.dp
-    Box(modifier = Modifier.background(Color.Cyan, shape = RoundedCornerShape(kCardCornerRadius)).fillMaxWidth())
+    val genreRowBackgroundColor = Color(Color.Cyan.red, Color.Cyan.green, Color.Cyan.blue, alpha = 0.75f, colorSpace = Color.Cyan.colorSpace)
+    Box(modifier = Modifier.background(genreRowBackgroundColor, shape = RoundedCornerShape(kCardCornerRadius)).fillMaxWidth())
     {
         Row(modifier = Modifier.padding(start = kCardContentPadding).align(Alignment.Center)) {
             val kGenreBoxPadding = 4.dp
@@ -157,6 +158,7 @@ fun GameScreenContent(
                     ){
                         Box(modifier
                             .fillMaxSize()
+                            .padding(kCardPadding)
                             .background(Color.White, shape = RoundedCornerShape(kCardCornerRadius))
                         ){
                             AsyncImage(
@@ -168,14 +170,17 @@ fun GameScreenContent(
                                     .height(kImageHeight)
                             )
 
-                            Box(modifier = Modifier.align(Alignment.BottomCenter)){
+                            val kNameGenreHorizontalPadding = 4.dp
+                            Box(modifier = Modifier.align(Alignment.BottomCenter).padding(horizontal = kNameGenreHorizontalPadding)){
                                 Column(modifier = Modifier.fillMaxWidth()) {
+                                    val kTextShadowOffset =  Offset(5f,  -5f)
+                                    val kTextBlurRadius = 5f
                                     Text(
                                         text = it.name,
                                         fontSize = 20.sp,
                                         color = Color.White,
                                         textAlign = TextAlign.Center,
-                                        style = TextStyle(shadow = Shadow(color = Color.Cyan, offset = Offset(5.0f, -5.0f), blurRadius = 5f)),
+                                        style = TextStyle(shadow = Shadow(color = Color.Cyan, offset = kTextShadowOffset, blurRadius = kTextBlurRadius)),
                                         modifier = Modifier
                                             .padding(
                                                 horizontal = kTextHorizontalPadding,
