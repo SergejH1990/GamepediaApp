@@ -26,7 +26,7 @@ object GameNavigationGraph : BaseNavigationGraph {
 
                     },
                     onSearchClick =  {
-
+                        navHostController.navigate(SearchNavigationGraph.Destination.Search.route)
                     }
                 )
             }
