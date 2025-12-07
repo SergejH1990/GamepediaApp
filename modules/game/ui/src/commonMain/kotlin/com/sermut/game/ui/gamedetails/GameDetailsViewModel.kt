@@ -25,9 +25,9 @@ class GameDetailsViewModel(
                 }
             }.onEach { result ->
                 result.onSuccess { data ->
-                    GameDetailsScreen.UIState(data = data)
+                    _uiState.update { GameDetailsScreen.UIState(data = data) }
                 }.onFailure { error ->
-                    GameDetailsScreen.UIState(error = error.message.toString())
+                    _uiState.update { GameDetailsScreen.UIState(error = error.message.toString()) }
                 }
             }.launchIn(viewModelScope)
     }
