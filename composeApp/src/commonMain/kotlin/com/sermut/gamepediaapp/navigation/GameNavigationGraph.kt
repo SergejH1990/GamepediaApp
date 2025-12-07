@@ -6,28 +6,47 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
+import androidx.navigation.toRoute
 import com.sermut.game.ui.game.GameScreen
+import com.sermut.game.ui.gamedetails.GameDetailsScreen
+import kotlinx.serialization.Serializable
 
 object GameNavigationGraph : BaseNavigationGraph {
-    sealed class Destination(val route: String) {
-        data object Root : Destination("/game-root")
-        data object Game : Destination("/game")
+    sealed interface Destination {
+        @Serializable data object Root : Destination
+        @Serializable data object Game : Destination
+        @Serializable data class Details(val id: String): Destination
     }
+
+    @Serializable
+    object HomeGraph
+
     override fun build(
         modifier: Modifier,
         navHostController: NavHostController,
         navGraphBuilder: NavGraphBuilder
     ) {
-        navGraphBuilder.navigation(route = Destination.Root.route, startDestination = Destination.Game.route) {
-            composable(route = Destination.Game.route){
+        navGraphBuilder.navigation<HomeGraph>(startDestination = Destination.Game) {
+            composable<Destination.Game>{
                 GameScreen(
                     modifier = modifier.fillMaxSize(),
                     onFavoriteClick = {
 
                     },
                     onSearchClick =  {
-                        navHostController.navigate(SearchNavigationGraph.Destination.Search.route)
+                        navHostController.navigate(SearchNavigationGraph.Destination.Search)
+                    },
+                    onClick = { id ->
+                        navHostController.navigate(Destination.Details(id = id.toString()))
                     }
+                )
+            }
+
+            composable<Destination.Details> { backStackEntry ->
+                val id = backStackEntry.toRoute<Destination.Details>()
+                GameDetailsScreen(
+                    modifiler = Modifier.fillMaxSize(),
+                    id = id.id
                 )
             }
         }

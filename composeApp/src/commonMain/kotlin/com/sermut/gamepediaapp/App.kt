@@ -34,12 +34,12 @@ import gamepediaapp.composeapp.generated.resources.compose_multiplatform
 fun App() {
     MaterialTheme {
         val navHostController = rememberNavController()
-        NavHost(navHostController, startDestination = GameNavigationGraph.Destination.Root.route){
+        NavHost(navHostController, startDestination = GameNavigationGraph.Destination.Root){
             listOf(
                 GameNavigationGraph,
                 SearchNavigationGraph
-            ).forEach {
-                it.build(
+            ).forEach { graphBuilder ->
+                graphBuilder.build(
                     modifier = Modifier.fillMaxSize(),
                     navHostController = navHostController,
                     navGraphBuilder = this

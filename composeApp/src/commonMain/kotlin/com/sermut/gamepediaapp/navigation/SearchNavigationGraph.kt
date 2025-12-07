@@ -7,24 +7,25 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import com.sermut.search.ui.SearchScreen
+import kotlinx.serialization.Serializable
 
 object SearchNavigationGraph : BaseNavigationGraph {
 
-    sealed class Destination(val route : String){
-        data object Root : Destination("/search-root")
-        data object Search : Destination("/search")
+    sealed interface Destination{
+        @Serializable data object Root : Destination
+       @Serializable data object Search : Destination
     }
+
+    @Serializable
+    object HomeGraph
 
     override fun build(
         modifier: Modifier,
         navHostController: NavHostController,
         navGraphBuilder: NavGraphBuilder
     ) {
-        navGraphBuilder.navigation(
-            route = Destination.Root.route,
-            startDestination = Destination.Search.route
-        ) {
-            composable(route = Destination.Search.route) {
+        navGraphBuilder.navigation<HomeGraph>(startDestination = Destination.Search){
+            composable<Destination.Search> {
                 SearchScreen(
                     modifier = Modifier.fillMaxSize(),
                     onClick = {

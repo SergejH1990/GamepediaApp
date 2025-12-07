@@ -1,6 +1,7 @@
 package com.sermut.game.ui.game
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -44,11 +45,19 @@ import org.koin.compose.viewmodel.koinViewModel
 fun GameScreen(
     modifier: Modifier = Modifier,
     onFavoriteClick: () -> Unit,
-    onSearchClick: () -> Unit
+    onSearchClick: () -> Unit,
+    onClick: (Int) -> Unit
 ){
     val viewModel = koinViewModel<GameViewModel>()
     val uiState = viewModel.uiState.collectAsStateWithLifecycle()
-    GameScreenContent(modifier = modifier.fillMaxSize(), uiState = uiState.value, onFavoriteClick, onSearchClick)
+
+    GameScreenContent(
+        modifier = modifier.fillMaxSize(),
+        uiState = uiState.value,
+        onFavoriteClick = onFavoriteClick,
+        onSearchClick = onSearchClick,
+        onClick = onClick
+    )
 }
 
 @Composable
@@ -98,7 +107,8 @@ fun GameScreenContent(
     modifier: Modifier = Modifier,
     uiState: GameScreen.UIState,
     onFavoriteClick: () -> Unit,
-    onSearchClick: () -> Unit
+    onSearchClick: () -> Unit,
+    onClick: (Int) -> Unit
 ){
     Scaffold(
         modifier = modifier.fillMaxSize().background(Color.White),
@@ -153,7 +163,10 @@ fun GameScreenContent(
                         modifier = Modifier
                             .padding(kCardPadding)
                             .fillMaxWidth()
-                            .height(kCardHeight),
+                            .height(kCardHeight)
+                            .clickable {
+                                onClick(it.id)
+                            },
                         shape = RoundedCornerShape(kCardCornerRadius),
                     ){
                         Box(modifier

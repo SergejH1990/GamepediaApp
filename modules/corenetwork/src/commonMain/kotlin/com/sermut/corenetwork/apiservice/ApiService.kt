@@ -1,6 +1,7 @@
 package com.sermut.corenetwork.apiservice
 
 import com.sermut.corenetwork.model.game.GameResponse
+import com.sermut.corenetwork.model.gamedetail.GameDetailsResponse
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.request.get
@@ -34,6 +35,19 @@ class ApiService (
             Result.success(response)
         }
         catch (e : Exception){
+            Result.failure(e)
+        }
+    }
+
+    suspend fun GetDetails(id: Int) : Result<GameDetailsResponse> {
+        return try {
+            val response = httpClient.get("api/games/${id}") {
+                url {
+                    parameter("key", "0c56c669b4194526ba356a980fa914b4")
+                }
+            }.body<GameDetailsResponse>()
+            Result.success(response)
+        } catch (e: Exception) {
             Result.failure(e)
         }
     }
