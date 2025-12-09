@@ -26,6 +26,8 @@ kotlin {
         }
     }
 
+    jvm()
+
     sourceSets {
         androidMain.dependencies {
             implementation(compose.preview)
