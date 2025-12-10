@@ -30,7 +30,10 @@ import coil3.compose.AsyncImage
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
-fun SearchScreen(modifier: Modifier = Modifier, onClick: (Int) -> Unit){
+fun SearchScreen(
+    modifier: Modifier = Modifier,
+    onClick: (Int) -> Unit
+){
     val viewModel = koinViewModel<SearchViewModel>()
     val uiState = viewModel.uiState.collectAsStateWithLifecycle()
     var query = rememberSaveable { mutableStateOf("") }
@@ -42,7 +45,7 @@ fun SearchScreen(modifier: Modifier = Modifier, onClick: (Int) -> Unit){
             query.value = it
             viewModel.updateQuery(query.value)
         },
-        onClick
+        onClick = onClick
     )
 }
 

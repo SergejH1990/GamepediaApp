@@ -28,11 +28,9 @@ object GameNavigationGraph : BaseNavigationGraph {
 
                 },
                 onSearchClick =  {
-                    println("Attempting to navigate to Search")
                     navHostController.navigate(SearchNavigationGraph.Destination.Search)
                 },
                 onClick = { id ->
-                    println("Attempting to navigate to Details with ID: $id")
                     navHostController.navigate(Destination.Details(id = id.toString()))
                 }
             )
@@ -42,7 +40,10 @@ object GameNavigationGraph : BaseNavigationGraph {
             val id = backStackEntry.toRoute<Destination.Details>()
             GameDetailsScreen(
                 modifiler = Modifier.fillMaxSize(),
-                id = id.id
+                id = id.id,
+                onBackClick = {
+                    navHostController.popBackStack()
+                }
             )
         }
     }

@@ -22,8 +22,8 @@ object SearchNavigationGraph : BaseNavigationGraph {
         navGraphBuilder.composable<Destination.Search> {
             SearchScreen(
                 modifier = Modifier.fillMaxSize(),
-                onClick = {
-
+                onClick = { id ->
+                    navHostController.navigate(GameNavigationGraph.Destination.Details(id.toString()))
                 }
             )
         }

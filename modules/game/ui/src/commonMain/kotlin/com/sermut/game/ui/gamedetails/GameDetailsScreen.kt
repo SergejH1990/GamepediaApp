@@ -3,10 +3,13 @@ package com.sermut.game.ui.gamedetails
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
@@ -14,9 +17,15 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -34,7 +43,8 @@ import org.koin.compose.viewmodel.koinViewModel
 @Composable
 fun GameDetailsScreen(
     modifiler : Modifier = Modifier,
-    id: String
+    id: String,
+    onBackClick: () -> Unit
 ){
     val viewModel = koinViewModel<GameDetailsViewModel>()
     val uiState = viewModel.uiState.collectAsStateWithLifecycle()
@@ -45,14 +55,24 @@ fun GameDetailsScreen(
 
     GameDetailsScreenContent(
         modifier = Modifier.fillMaxSize(),
-        uiState = uiState.value
+        uiState = uiState.value,
+        onDelete = { id ->
+
+        },
+        onSave = { id, name, image ->
+
+        },
+        onBackClick = onBackClick
     )
 }
 
 @Composable
 fun GameDetailsScreenContent(
     modifier: Modifier = Modifier,
-    uiState: GameDetailsScreen.UIState
+    uiState: GameDetailsScreen.UIState,
+    onDelete: (Int) -> Unit,
+    onSave: (id: Int, title: String, image: String) -> Unit,
+    onBackClick: () -> Unit
 ){
     if (uiState.isLoading){
         Box(
@@ -80,7 +100,7 @@ fun GameDetailsScreenContent(
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(bottom = 50.dp)
-            ){
+            ) {
                 item {
                     AsyncImage(
                         model = data.backgroundImage,
@@ -118,17 +138,17 @@ fun GameDetailsScreenContent(
                             .fillMaxWidth()
                     ) {
                         Text(
-                                text = "Platforms",
-                                style = MaterialTheme.typography.headlineSmall,
-                                modifier = Modifier
-                                    .padding(horizontal = 12.dp)
-                                    .padding(top = 16.dp)
-                            )
+                            text = "Platforms",
+                            style = MaterialTheme.typography.headlineSmall,
+                            modifier = Modifier
+                                .padding(horizontal = 12.dp)
+                                .padding(top = 16.dp)
+                        )
 
                         LazyRow(
                             modifier = Modifier.fillMaxWidth()
                         ) {
-                            items(items = data.platforms){
+                            items(items = data.platforms) {
                                 Card(
                                     modifier = Modifier
                                         .wrapContentSize()
@@ -136,19 +156,23 @@ fun GameDetailsScreenContent(
                                         .background(color = Color.White),
                                     shape = RoundedCornerShape(12.dp),
                                     elevation = CardDefaults.cardElevation(6.dp)
-                                ){
+                                ) {
                                     Column(
                                         modifier = Modifier
-                                            .width(150.dp)
+                                            .width(150.dp),
+                                        horizontalAlignment = Alignment.CenterHorizontally
                                     ) {
                                         AsyncImage(
                                             model = it.image,
                                             contentDescription = null,
+                                            contentScale = ContentScale.Crop,
                                             modifier = Modifier
                                                 .background(
                                                     color = Color.Transparent,
                                                     shape = CircleShape
-                                                ).clip(CircleShape)
+                                                )
+                                                .clip(CircleShape)
+                                                .size(120.dp)
                                         )
 
                                         Text(
@@ -162,6 +186,98 @@ fun GameDetailsScreenContent(
                             }
                         }
                     }
+                }
+
+                item {
+                    Text(
+                        text = "Developers",
+                        style = MaterialTheme.typography.headlineSmall,
+                        modifier = Modifier
+                            .padding(horizontal = 12.dp)
+                            .padding(top = 24.dp)
+                    )
+                }
+
+                items(data.developers) {
+                    Row(
+                        modifier = Modifier.padding(horizontal = 12.dp).padding(bottom = 8.dp)
+                            .fillMaxWidth(),
+                        verticalAlignment = Alignment.Top
+                    ) {
+
+                        AsyncImage(
+                            model = it.image, contentDescription = null,
+                            modifier = Modifier.size(120.dp)
+                                .background(
+                                    color = Color.Transparent,
+                                    shape = RoundedCornerShape(12.dp)
+                                ).clip(RoundedCornerShape(12.dp)),
+                            contentScale = ContentScale.Crop
+                        )
+
+                        Spacer(Modifier.width(8.dp))
+
+                        Column(modifier = Modifier.weight(1f)) {
+                            Text(
+                                text = it.name, style = MaterialTheme.typography.headlineSmall,
+                                modifier = Modifier.padding(end = 8.dp)
+                            )
+                            Spacer(Modifier.height(8.dp))
+                            Text(
+                                text = "Gamecount: " + it.gameCount,
+                                style = MaterialTheme.typography.titleSmall
+                            )
+                        }
+                    }
+                }
+            }
+
+            Row(
+                modifier = Modifier
+                    .padding(horizontal = 16.dp)
+                    .padding(top = 16.dp)
+                    .fillMaxWidth()
+            ) {
+
+                IconButton(
+                    onClick = onBackClick,
+                    modifier = Modifier.background(color = Color.White, shape = CircleShape)
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.ArrowBack,
+                        contentDescription = null,
+                        modifier = Modifier.padding(4.dp)
+                    )
+                }
+
+                Spacer(modifier = Modifier.weight(1f))
+
+                IconButton(
+                    onClick = {
+                        onSave(data.id, data.name, data.backgroundImage)
+                    },
+                    modifier = Modifier.background(color = Color.White, shape = CircleShape)
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.Favorite, contentDescription = null,
+                        modifier = Modifier.padding(4.dp)
+                    )
+                }
+
+                Spacer(modifier = Modifier.width(12.dp))
+
+
+                IconButton(
+                    onClick = {
+                        onDelete(data.id)
+                    },
+                    modifier = Modifier.background(color = Color.White, shape = CircleShape)
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.Delete,
+                        contentDescription = null,
+                        modifier = Modifier.padding(4.dp)
+                    )
                 }
             }
         }
