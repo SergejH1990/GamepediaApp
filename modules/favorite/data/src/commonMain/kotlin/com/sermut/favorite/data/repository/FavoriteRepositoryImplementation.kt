@@ -31,10 +31,10 @@ class FavoriteRepositoryImplementation(
     }
 
     override suspend fun upsert(id: Int, name: String, image: String) {
-        TODO("Not yet implemented")
+        gameDB.appDatabaseQueries.upsert(id.toLong(), name, image)
     }
 
     override suspend fun delete(id: Int) {
-        TODO("Not yet implemented")
+        gameDB.appDatabaseQueries.delete(id.toLong())
     }
 }
