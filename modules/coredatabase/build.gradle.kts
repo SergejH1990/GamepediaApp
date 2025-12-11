@@ -17,16 +17,6 @@ kotlin {
         }
     }
 
-    listOf(
-        iosArm64(),
-        iosSimulatorArm64()
-    ).forEach { iosTarget ->
-        iosTarget.binaries.framework {
-            baseName = "ComposeApp"
-            isStatic = true
-        }
-    }
-
     jvm()
 
     sourceSets {
@@ -44,6 +34,7 @@ kotlin {
             implementation(compose.components.uiToolingPreview)
             implementation(libs.androidx.lifecycle.viewmodelCompose)
             implementation(libs.androidx.lifecycle.runtimeCompose)
+            implementation(libs.koin.core)
             implementation(libs.sql.delight.common)
             api(libs.sql.delight.common.coroutines)
         }
@@ -54,6 +45,15 @@ kotlin {
             implementation(compose.desktop.currentOs)
             implementation(libs.kotlinx.coroutinesSwing)
             implementation(libs.sql.delight.desktop)
+        }
+    }
+}
+
+sqldelight {
+    databases{
+        create("GameDB"){
+            packageName.set("com.sermut.coredatabase")
+            srcDirs("src/commonMain/sqlDelight")
         }
     }
 }

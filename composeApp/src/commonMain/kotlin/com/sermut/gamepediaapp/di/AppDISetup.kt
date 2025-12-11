@@ -1,5 +1,6 @@
 package com.sermut.gamepediaapp.di
 
+import com.sermut.coredatabase.di.GetCoreDatabaseModule
 import com.sermut.corenetwork.di.GetCoreNetworkModule
 import com.sermut.game.data.di.GetGameDataModule
 import com.sermut.game.domain.di.GetGameDomainModule
@@ -19,7 +20,8 @@ fun initKoin(koinApplication: ((KoinApplication) -> Unit)? = null){
             GetGameUIModule(),
             GetSearchDataModule(),
             GetSearchDomainModule(),
-            GetSearchUIModule()
+            GetSearchUIModule(),
+            GetCoreDatabaseModule()
         )
     }
 }
