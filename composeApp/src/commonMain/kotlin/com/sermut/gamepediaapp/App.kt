@@ -6,6 +6,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
+import com.sermut.gamepediaapp.navigation.FavoriteNavigationGraph
 import com.sermut.gamepediaapp.navigation.GameNavigationGraph
 import com.sermut.gamepediaapp.navigation.SearchNavigationGraph
 import org.jetbrains.compose.ui.tooling.preview.Preview
@@ -18,7 +19,8 @@ fun App() {
         NavHost(navHostController, startDestination = GameNavigationGraph.Destination.Game){
             listOf(
                 GameNavigationGraph,
-                SearchNavigationGraph
+                SearchNavigationGraph,
+                FavoriteNavigationGraph
             ).forEach { graphBuilder ->
                 graphBuilder.build(
                     modifier = Modifier.fillMaxSize(),

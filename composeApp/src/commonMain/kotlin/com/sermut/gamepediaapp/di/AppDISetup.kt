@@ -2,6 +2,9 @@ package com.sermut.gamepediaapp.di
 
 import com.sermut.coredatabase.di.GetCoreDatabaseModule
 import com.sermut.corenetwork.di.GetCoreNetworkModule
+import com.sermut.favorite.data.di.GetFavoriteDataModule
+import com.sermut.favorite.domain.di.GetFavoriteDomainModule
+import com.sermut.favorite.ui.di.GetFavoriteUIModule
 import com.sermut.game.data.di.GetGameDataModule
 import com.sermut.game.domain.di.GetGameDomainModule
 import com.sermut.game.ui.di.GetGameUIModule
@@ -13,6 +16,7 @@ import org.koin.core.context.startKoin
 
 fun initKoin(koinApplication: ((KoinApplication) -> Unit)? = null){
     startKoin {
+        koinApplication?.invoke(this)
         modules(
             GetCoreNetworkModule(),
             GetGameDataModule(),
@@ -21,7 +25,10 @@ fun initKoin(koinApplication: ((KoinApplication) -> Unit)? = null){
             GetSearchDataModule(),
             GetSearchDomainModule(),
             GetSearchUIModule(),
-            GetCoreDatabaseModule()
+            GetCoreDatabaseModule(),
+            GetFavoriteDataModule(),
+            GetFavoriteDomainModule(),
+            GetFavoriteUIModule()
         )
     }
 }

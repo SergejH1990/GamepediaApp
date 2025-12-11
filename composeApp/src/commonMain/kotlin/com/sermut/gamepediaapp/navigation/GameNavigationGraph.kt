@@ -25,7 +25,7 @@ object GameNavigationGraph : BaseNavigationGraph {
             GameScreen(
                 modifier = modifier.fillMaxSize(),
                 onFavoriteClick = {
-
+                    navHostController.navigate(FavoriteNavigationGraph.Destination.Favorite)
                 },
                 onSearchClick =  {
                     navHostController.navigate(SearchNavigationGraph.Destination.Search)

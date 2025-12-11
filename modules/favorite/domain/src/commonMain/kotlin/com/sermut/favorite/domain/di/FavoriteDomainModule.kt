@@ -5,7 +5,7 @@ import com.sermut.favorite.domain.useCases.GetAllLocalGamesUseCase
 import com.sermut.favorite.domain.useCases.UpsertUseCase
 import org.koin.dsl.module
 
-fun GetFavoriteDomainModule = module {
+fun GetFavoriteDomainModule() = module {
     factory { DeleteUseCase(favoriteRepository = get()) }
     factory { UpsertUseCase(favoriteRepository = get()) }
     factory { GetAllLocalGamesUseCase(favoriteRepository = get()) }

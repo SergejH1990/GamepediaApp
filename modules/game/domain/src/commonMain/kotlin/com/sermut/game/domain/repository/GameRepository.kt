@@ -7,4 +7,8 @@ interface GameRepository {
     suspend fun GetGames(): Result<List<Game>>
 
     suspend fun GetDetails(id: Int): Result<GameDetails>
+
+    suspend fun Save(id: Int, image: String, name: String)
+
+    suspend fun Delete(id: Int)
 }

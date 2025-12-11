@@ -57,10 +57,10 @@ fun GameDetailsScreen(
         modifier = Modifier.fillMaxSize(),
         uiState = uiState.value,
         onDelete = { id ->
-
+            viewModel.delete(id = id)
         },
         onSave = { id, name, image ->
-
+            viewModel.save(id = id, image = image, name = name)
         },
         onBackClick = onBackClick
     )

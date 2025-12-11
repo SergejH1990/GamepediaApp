@@ -25,6 +25,7 @@ kotlin {
         }
         commonMain.dependencies {
             implementation(projects.modules.common.domain)
+            implementation(projects.modules.common.ui)
             implementation(projects.modules.corenetwork)
             implementation(projects.modules.game.domain)
             implementation(compose.runtime)

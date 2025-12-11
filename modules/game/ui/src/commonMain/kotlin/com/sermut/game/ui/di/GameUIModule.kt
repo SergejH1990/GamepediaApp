@@ -7,5 +7,5 @@ import org.koin.dsl.module
 
 fun GetGameUIModule() = module {
     viewModel { GameViewModel(gameUseCase = get()) }
-    viewModel { GameDetailsViewModel(gameDetailsUseCase = get()) }
+    viewModel { GameDetailsViewModel(gameDetailsUseCase = get(), saveGameUseCase = get(), deleteGameUseCase = get()) }
 }

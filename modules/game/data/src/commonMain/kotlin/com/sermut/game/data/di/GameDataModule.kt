@@ -5,5 +5,5 @@ import com.sermut.game.domain.repository.GameRepository
 import org.koin.dsl.module
 
 fun GetGameDataModule() = module {
-    factory<GameRepository> { GameRepositoryImplementation(apiService = get()) }
+    factory<GameRepository> { GameRepositoryImplementation(apiService = get(), gameDB = get()) }
 }
