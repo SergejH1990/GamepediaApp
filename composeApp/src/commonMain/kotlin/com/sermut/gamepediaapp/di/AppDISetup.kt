@@ -18,6 +18,7 @@ fun initKoin(koinApplication: ((KoinApplication) -> Unit)? = null){
     startKoin {
         koinApplication?.invoke(this)
         modules(
+            GetCoreDatabaseModule(),
             GetCoreNetworkModule(),
             GetGameDataModule(),
             GetGameDomainModule(),
@@ -25,7 +26,6 @@ fun initKoin(koinApplication: ((KoinApplication) -> Unit)? = null){
             GetSearchDataModule(),
             GetSearchDomainModule(),
             GetSearchUIModule(),
-            GetCoreDatabaseModule(),
             GetFavoriteDataModule(),
             GetFavoriteDomainModule(),
             GetFavoriteUIModule()

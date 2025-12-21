@@ -9,6 +9,9 @@ import org.koin.dsl.module
 actual fun GetCoreDatabaseModule(): Module {
     return module {
         single { SqlDriverFactory().GetSQLDriver() }
-        single { GameDB.invoke(get<SqlDriver>()) }
+        single {
+            val sqlDriver = get<SqlDriver>()
+            GameDB.invoke(driver = sqlDriver)
+        }
     }
 }
